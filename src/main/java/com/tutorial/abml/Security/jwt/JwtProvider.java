@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtProvider {
     
-    private static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class); // Le agregue el final que no estaba
 
     @Value("${jwt.secret}")//cambio {{ por {
     private String secret;
@@ -40,7 +40,7 @@ public class JwtProvider {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject(); //Jwt por Jws
     }
 
-    public boolean validatetoken(String token){
+    public boolean validateToken(String token){ // cambie el nombre del Metodo de validatetoken a validateToken
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);// Jwt por Jws
             return true;

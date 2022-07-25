@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping ("/skills_soft")
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class Skills_SoftController {
 
@@ -45,7 +45,7 @@ public class Skills_SoftController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
      public ResponseEntity<?> create(@RequestBody Skills_SoftDto skills_softDto){
         Skills_Soft skills_soft = new Skills_Soft();
@@ -59,7 +59,7 @@ public class Skills_SoftController {
         return new ResponseEntity(new Mensaje("El Skill_Soft fue creado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody Skills_SoftDto skills_softDto){
         
@@ -73,7 +73,7 @@ public class Skills_SoftController {
         return new ResponseEntity(new Mensaje("Registro de Skills_Soft fue Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!skills_softService.existsById(id))

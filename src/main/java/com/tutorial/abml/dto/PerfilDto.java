@@ -1,14 +1,14 @@
 
 package com.tutorial.abml.dto;
 
-import com.tutorial.abml.entity.UsuarioOld;
+import com.tutorial.abml.entity.Perfil;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioDto {
+public class PerfilDto {
     @NotBlank
     private String nombre;
     @NotBlank
@@ -34,10 +34,10 @@ public class UsuarioDto {
     @NotBlank
     private String perfil;
 
-    public UsuarioDto() {
+    public PerfilDto() {
     }
 
-    public UsuarioDto(String nombre, String apellido, String fecha_nacimiento, String domicilio, String nacionalidad, String mail, String password, String sobre_mi, String ocupacion, String imagen_background_header, String imagen_perfil, String perfil) {
+    public PerfilDto(String nombre, String apellido, String fecha_nacimiento, String domicilio, String nacionalidad, String mail, String password, String sobre_mi, String ocupacion, String imagen_background_header, String imagen_perfil, String perfil) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha_nacimiento = fecha_nacimiento;

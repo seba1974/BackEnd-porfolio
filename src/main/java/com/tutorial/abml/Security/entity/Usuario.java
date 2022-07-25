@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,10 +51,10 @@ public class Usuario {
         this.password = password;
     }
 
-    public Usuario(String nombre, String nombreUsuario, String email) {
+    /*public Usuario(String nombre, String nombreUsuario, String email) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email; //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
     
 }

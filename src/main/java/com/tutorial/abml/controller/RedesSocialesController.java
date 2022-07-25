@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/redessociales")
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class RedesSocialesController {
     
@@ -44,7 +44,7 @@ public class RedesSocialesController {
     }
 
    
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
      public ResponseEntity<?> create(@RequestBody RedesSocialesDto redesSocialesDto){    
         RedesSociales redessociales = new RedesSociales();
@@ -58,7 +58,7 @@ public class RedesSocialesController {
         return new ResponseEntity(new Mensaje("La Red Social fue creada"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody RedesSocialesDto redesSocialesDto){
         
@@ -72,7 +72,7 @@ public class RedesSocialesController {
         return new ResponseEntity(new Mensaje("Registro de Red Social Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")  
+    @PreAuthorize ("hasRole('ADMIN')")  
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!redesSocialesService.existsById(id))

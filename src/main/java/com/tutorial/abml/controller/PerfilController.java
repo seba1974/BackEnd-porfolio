@@ -1,9 +1,9 @@
 package com.tutorial.abml.controller;
 
-import com.tutorial.abml.dto.UsuarioDto;
+import com.tutorial.abml.dto.PerfilDto;
 import com.tutorial.abml.dto.Mensaje;
-import com.tutorial.abml.entity.UsuarioOld;
-import com.tutorial.abml.service.UsuarioServiceOld;
+import com.tutorial.abml.entity.Perfil;
+import com.tutorial.abml.service.PerfilService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,36 +21,36 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/usuarios")
-@CrossOrigin ( origins = "//localhost:4200")
+@RequestMapping("/perfil")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 
-public class UsuarioController {
+public class PerfilController {
     
 @Autowired // Hace que toda la clase UsuarioService se cree un objeto y la guarda dentro de usuarioService
-    UsuarioServiceOld usuarioService;
+    PerfilService usuarioService;
 
     @GetMapping("/lista")
-    public ResponseEntity<List<UsuarioOld>> list(){
-        List<UsuarioOld> list = usuarioService.list();
+    public ResponseEntity<List<Perfil>> list(){
+        List<Perfil> list = usuarioService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
  
     
     @GetMapping("/detail/{id}")
-    public ResponseEntity<UsuarioOld> getById(@PathVariable("id") int id){
+    public ResponseEntity<Perfil> getById(@PathVariable("id") int id){
         if(!usuarioService.existsById(id))
             return new ResponseEntity(new Mensaje("No se encontro el resgitro"), HttpStatus.NOT_FOUND);
-        UsuarioOld usuario = usuarioService.getOne(id).get();
+        Perfil usuario = usuarioService.getOne(id).get();
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
  
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
-     public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto){
-        UsuarioOld usuario = new UsuarioOld();
+     public ResponseEntity<?> create(@RequestBody PerfilDto usuarioDto){
+        Perfil usuario = new Perfil();
         
         usuario.setNombre(usuarioDto.getNombre());
         usuario.setApellido(usuarioDto.getApellido());
@@ -72,11 +72,11 @@ public class UsuarioController {
 
      
      
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
-    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody UsuarioDto usuarioDto){
+    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody PerfilDto usuarioDto){
         
-        UsuarioOld usuario = usuarioService.getOne(id).get();
+        Perfil usuario = usuarioService.getOne(id).get();
         
         usuario.setNombre(usuarioDto.getNombre());
         usuario.setApellido(usuarioDto.getApellido());
@@ -98,7 +98,7 @@ public class UsuarioController {
 
     
     
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!usuarioService.existsById(id))

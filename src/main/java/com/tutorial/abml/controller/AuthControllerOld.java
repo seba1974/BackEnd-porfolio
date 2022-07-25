@@ -2,7 +2,7 @@
 package com.tutorial.abml.controller;
 
 import com.tutorial.abml.dao.LoginDao;
-import com.tutorial.abml.entity.UsuarioOld;
+import com.tutorial.abml.entity.Perfil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +20,7 @@ public class AuthControllerOld {
     private LoginDao loginDao;
   
     @RequestMapping (value = "/validar", method = RequestMethod.POST)
-    public String login(@RequestBody UsuarioOld usuario) {
+    public String login(@RequestBody Perfil usuario) {
       if(loginDao.verificarCredenciales(usuario)){
         return "OK";
       }

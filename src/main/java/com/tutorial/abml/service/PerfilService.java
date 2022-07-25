@@ -1,27 +1,27 @@
 
 package com.tutorial.abml.service;
 
-import com.tutorial.abml.entity.UsuarioOld;
+import com.tutorial.abml.entity.Perfil;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.tutorial.abml.repository.UsuarioRepositoryOld;
+import com.tutorial.abml.repository.IPerfilRepository;
 
 @Service
 @Transactional
-public class UsuarioServiceOld {
+public class PerfilService {
 @Autowired
-    UsuarioRepositoryOld usuarioRepository;
+    IPerfilRepository usuarioRepository;
 
     
-    public List<UsuarioOld> list(){
+    public List<Perfil> list(){
         return usuarioRepository.findAll();
     }
 
    
-    public Optional<UsuarioOld> getOne(int id){
+    public Optional<Perfil> getOne(int id){
         return usuarioRepository.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class UsuarioServiceOld {
     
     
     
-    public void  save(UsuarioOld usuario){
+    public void  save(Perfil usuario){
         usuarioRepository.save(usuario);
     }
     

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin ( origins = "https://frontend-sebaveloce.web.app")
 @RequestMapping ("/cursos")
 public class CursosController {
@@ -45,7 +45,7 @@ public class CursosController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody CursosDto cursosDto){
         Cursos cursos = new Cursos();
@@ -58,7 +58,7 @@ public class CursosController {
         return new ResponseEntity(new Mensaje("El curso fue creado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody CursosDto cursosDto){
         
@@ -72,7 +72,7 @@ public class CursosController {
         return new ResponseEntity(new Mensaje("Registro de cursos fue Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!cursosService.existsById(id))

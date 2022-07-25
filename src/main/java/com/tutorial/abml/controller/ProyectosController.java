@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin ( origins = "https://frontend-sebaveloce.web.app")
 @RequestMapping ("/proyectos")
 public class ProyectosController {
@@ -45,7 +45,7 @@ public class ProyectosController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody ProyectosDto proyectosDto){
         Proyectos proyectos = new Proyectos(); 
@@ -60,7 +60,7 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("El proyecto fue creado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody ProyectosDto proyectosDto){
         
@@ -76,7 +76,7 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("Registro de proyectos fue Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!proyectosService.existsById(id))

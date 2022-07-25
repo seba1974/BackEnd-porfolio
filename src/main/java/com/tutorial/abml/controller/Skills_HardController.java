@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping ("/skills_hard")
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class Skills_HardController {
 
@@ -45,7 +45,7 @@ public class Skills_HardController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
     
      public ResponseEntity<?> create(@RequestBody Skills_HardDto skills_hardDto){
@@ -60,7 +60,7 @@ public class Skills_HardController {
         return new ResponseEntity(new Mensaje("El idioma fue creado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody Skills_HardDto skills_hardDto){
         
@@ -74,7 +74,7 @@ public class Skills_HardController {
         return new ResponseEntity(new Mensaje("Registro de Skills_Hard fue Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!skills_hardService.existsById(id))

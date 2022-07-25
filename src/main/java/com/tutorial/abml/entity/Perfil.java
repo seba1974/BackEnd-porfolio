@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table (name="tblperfil")
-public class UsuarioOld implements Serializable {
+public class Perfil implements Serializable {
     @Column (name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,10 +45,10 @@ public class UsuarioOld implements Serializable {
     @Column (name = "perfil")
     private String perfil;
 
-    public UsuarioOld() {
+    public Perfil() {
     }
 
-    public UsuarioOld(int id, String nombre, String apellido, String fecha_nacimiento, String domicilio, String nacionalidad, String mail, String password, String sobre_mi, String ocupacion, String imagen_background_header, String imagen_perfil, String perfil) {
+    public Perfil(int id, String nombre, String apellido, String fecha_nacimiento, String domicilio, String nacionalidad, String mail, String password, String sobre_mi, String ocupacion, String imagen_background_header, String imagen_perfil, String perfil) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin ("//https://frontend-sebaveloce.web.app")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 @RequestMapping("/auth")
 public class AuthController {
     
@@ -52,12 +52,12 @@ public class AuthController {
     
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) //no entra por aca
-            return new ResponseEntity(new Mensaje("Campos Mal Puestos o Email inválido"),HttpStatus.BAD_REQUEST);
-        if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))// ingresa Ok
-            return new ResponseEntity(new Mensaje("Ese Nombre ya Existe"),HttpStatus.BAD_REQUEST);
-        if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))// ingresa ok
-            return new ResponseEntity(new Mensaje("Ese Email ya Existe"),HttpStatus.BAD_REQUEST);
+        if(bindingResult.hasErrors()) 
+            return new ResponseEntity(new Mensaje("Campos Mal Puestos o Email inválido"),HttpStatus.BAD_REQUEST);//no entra por aca
+        if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+            return new ResponseEntity(new Mensaje("Ese Nombre Usuario ya Existe"),HttpStatus.BAD_REQUEST);// ingresa Ok
+        if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
+            return new ResponseEntity(new Mensaje("Ese Email ya Existe"),HttpStatus.BAD_REQUEST);// ingresa ok
         Usuario usuario =
                 new Usuario // se agregó el constructor en la entidad Usuario
                         (nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),

@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-        private static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
+        private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class); // agregue final
 
     @Autowired
     JwtProvider jwtProvider;
@@ -30,7 +30,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
         try{
             String token = getToken(req);
-            if (token != null && jwtProvider.validatetoken(token)){
+            if (token != null && jwtProvider.validateToken(token)){
                 String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
                 UserDetails userDetails = userDetailService.loadUserByUsername(nombreUsuario);
                 UsernamePasswordAuthenticationToken auth =

@@ -17,7 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class EducacionController {
 
@@ -40,7 +40,7 @@ public class EducacionController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
      //public ResponseEntity<?> create(@PathVariable("id")int id, @RequestBody EducacionDto educacionDto){    
      //   Educacion educacion = educacionService.getOne(id).get();
@@ -60,7 +60,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("La Educacion fue creada"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody EducacionDto educacionDto){
         
@@ -78,7 +78,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Registro de Educacion Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!educacionService.existsById(id))

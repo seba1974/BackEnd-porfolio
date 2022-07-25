@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtEntryPoint implements AuthenticationEntryPoint{
 
-    private static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class); // le agregue final que no estaba
     
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException authException) throws IOException, ServletException {

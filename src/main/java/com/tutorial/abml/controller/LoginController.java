@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.tutorial.abml.dao.LoginDao;
-import com.tutorial.abml.entity.UsuarioOld;
+import com.tutorial.abml.entity.Perfil;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -25,14 +25,14 @@ public class LoginController {
        
     // Listar Usuarios de Login **OK**
     @RequestMapping (value = "/login/listar", method = RequestMethod.GET)
-    public List<UsuarioOld> getUsuarios() {
+    public List<Perfil> getUsuarios() {
        return loginDao.getUsuarios();
     }
     
     
     // Crear Usuarios de Login **OK**
     @RequestMapping (value = "/login/crear", method = RequestMethod.POST)
-    public void registrarUsuario(@RequestBody UsuarioOld usuario) {
+    public void registrarUsuario(@RequestBody Perfil usuario) {
        loginDao.registrar(usuario);
     }
     

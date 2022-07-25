@@ -41,27 +41,46 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-http.cors().and().csrf().disable()
-        .authorizeRequests()
-        .antMatchers("/auth/**").permitAll()
-        .antMatchers("/usuarios/**").permitAll() // reemplazar ** por lista en todos
-        //.antMatchers("/usuarios/detail/**").permitAll()
-        .antMatchers("/usuarios/**").permitAll()
-        .antMatchers("/redessociales/**").permitAll()
-        .antMatchers("/experiencialaboral/**").permitAll()
-        .antMatchers("/educacion/**").permitAll()
-        .antMatchers("/idiomas/**").permitAll()
-        .antMatchers("/cursos/**").permitAll()
-        .antMatchers("/acercade/**").permitAll()
-        .antMatchers("/proyectos/**").permitAll()
-        .antMatchers("/skills_hard/**").permitAll()
-        .antMatchers("/skills_soft/**").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-        .and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.cors().and().csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/auth/**").permitAll()
+                
+            .antMatchers("/perfil/lista").permitAll() // reemplazar ** por lista en todos
+            .antMatchers("/perfil/detail/**").permitAll()
+            
+            .antMatchers("/redessociales/lista").permitAll()
+            .antMatchers("/redessociales/detail/**").permitAll()
+                
+            .antMatchers("/experiencialaboral/lista").permitAll()
+            .antMatchers("/experiencialaboral/detail/**").permitAll()
+            
+            .antMatchers("/educacion/lista").permitAll()
+            .antMatchers("/educacion/detail/**").permitAll()            
+            
+            .antMatchers("/idiomas/lista").permitAll()
+            .antMatchers("/idiomas/detail/**").permitAll()
+                        
+            .antMatchers("/cursos/lista").permitAll()
+            .antMatchers("/cursos/detail/**").permitAll()
+            
+            .antMatchers("/acercade/lista").permitAll()
+            .antMatchers("/acercade/detail/**").permitAll()
+            
+            .antMatchers("/proyectos/lista").permitAll()
+            .antMatchers("/proyectos/detail/**").permitAll()
+            
+            .antMatchers("/skills_hard/lista").permitAll()
+            .antMatchers("/skills_hard/detail/**").permitAll()
+            
+            .antMatchers("/skills_soft/lista").permitAll()
+            .antMatchers("/skills_soft/detail/**").permitAll()
+            
+            .anyRequest().authenticated()
+            .and()
+            .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         
         }
 

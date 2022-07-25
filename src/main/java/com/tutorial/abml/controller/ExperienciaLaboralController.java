@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/experiencialaboral")
-@CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
 // @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class ExperienciaLaboralController {
     
@@ -45,7 +45,7 @@ public class ExperienciaLaboralController {
 
    
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PostMapping("/crear")
      // public ResponseEntity<?> create(@PathVariable("id")int id, @RequestBody ExperienciaLaboralDto experienciaLaboralDto){    
      //   ExperienciaLaboral experiencialaboral = experienciaLaboralService.getOne(id).get();
@@ -65,7 +65,7 @@ public class ExperienciaLaboralController {
         return new ResponseEntity(new Mensaje("Experiencia Laboral creada"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @PutMapping("/modificar/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody ExperienciaLaboralDto experienciaLaboralDto){
         ExperienciaLaboral experiencialaboral = experienciaLaboralService.getOne(id).get();
@@ -82,7 +82,7 @@ public class ExperienciaLaboralController {
         return new ResponseEntity(new Mensaje("Registro de Experiencia Laboral Actualizado"), HttpStatus.OK);
     }
 
-    //@PreAuthorize ("hasRole('ADMIN')")
+    @PreAuthorize ("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!experienciaLaboralService.existsById(id))
