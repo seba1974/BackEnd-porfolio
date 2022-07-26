@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping (value = "/api")
-@CrossOrigin ( origins = "//localhost:4200")
-// @CrossOrigin(origins = "http://https://frontend-sebaveloce.web.app")
+// @CrossOrigin ( origins = "//localhost:4200")
+@CrossOrigin(origins = "http://https://frontend-sebaveloce.web.app")
 public class LoginController {
     
     @Autowired
