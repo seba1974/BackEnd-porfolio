@@ -17,8 +17,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
-// @CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
+// @CrossOrigin ("http://localhost:4200")     //("//https://frontend-sebaveloce.web.app")
+@CrossOrigin(origins = "https://frontend-sebaveloce.web.app")
 public class EducacionController {
 
     @Autowired
